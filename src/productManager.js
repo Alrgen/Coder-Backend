@@ -1,7 +1,6 @@
-const fs = require("fs");
-const { findSourceMap } = require("module");
+import fs from 'fs'
 
-class ProductManager {
+export class ProductManager {
     constructor(path) {
         this.products = [];
         this.path = path;
@@ -76,16 +75,20 @@ class ProductManager {
     async getProductById(id) {
         try {
             this.products = await this.getProducts();
+            let productFilter;
             if (this.products.length > 0) {
                 let b = false;
                 this.products.forEach(product => {
                     if (product.id === id) {
                         b = true;
-                        console.log(product);
-                        return product;
+                        productFilter = product;
+                        return 
                     };
                 });
-                !b && console.log("Not Found");
+                if (!b){
+                    return "Not Found"
+                }
+                return productFilter;
             }
         } catch (error) {
             console.log(`Error: ${error}`);
