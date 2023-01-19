@@ -13,25 +13,22 @@ export class ProductManager {
         if (this.products.length === 0) {
             this.products.push(newItem);
             this.#saveData();
-            console.log("Producto agregado");
-            return;
+            return "Producto agregado";
         }
 
         if (this.#valuesValidation(newItem)) {
-            console.log("Faltan campos vacios.")
-            return;
+            return "Faltan campos por completar.";
         }
 
         if (this.#codeValidation(newItem.code)) {
-            console.log("El codigo ingresado ya esta en uso.");
-            return;
+            return "El codigo ingresado ya esta en uso.";
         }
 
-        newItem.id = this.products.length + 1;
+        newItem.id = this.products[this.products.length - 1].id + 1;
 
         this.products.push(newItem);
         this.#saveData();
-        console.log("Producto agregado");
+        return "Producto agregado";
     }
 
     #saveData = () => {
@@ -101,13 +98,15 @@ export class ProductManager {
             
             for(let i = 0; i < this.products.length; i++){
                 if (this.products[i].id === id){
-                    this.products[i] = newProduct;
+                    this.products[i] = {...this.products[i], ...newProduct};
                     this.products[i].id = id;
                     this.#saveData();
-                    console.log("Producto modificado con exito");
-                    return;
+                    
+                    return `Producto modificado con exito`;
                 }
             }
+
+            return 'Ocurrio un error inesperado'
         } catch (error) {
             console.log(`Error: ${error}`);
         }
@@ -120,9 +119,9 @@ export class ProductManager {
             if (index >= 0){
                 this.products.splice(index, 1);
                 this.#saveData();
-                console.log("elemento eliminado");
+                return "Producto eliminado con exito"
             } else {
-                console.log("Elemento no encontrado");
+                return "El id no corresponde con ningun producto"
             }
         } catch (error) {
             console.log(`Error: ${error}`);

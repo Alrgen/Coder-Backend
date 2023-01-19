@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/Alrgen/Coder-House-Backend#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6"
   },
   "type": "module"
 }
