@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ProductManager } from '../productManager.js';
+import socketServer from "../app.js";
 
 
 const router = Router();
@@ -57,25 +58,30 @@ router.post('/', async (req, res) => {
     }
 
     product = {...product, ...productEntry}
-
-    console.log(product)
+    
     res.send(await productManager.addProduct(product));
+    socketServer.emit('updateProducts', await productManager.getProducts());
 })
 
 router.put('/:pid', async (req, res) => {
+
     let pid = req.params.pid
     let id = parseInt(pid)
     let product = req.body
 
-
+    
     res.send(await productManager.updateProduct(id, product));
+    socketServer.emit('updateProducts', await productManager.getProducts());
 })
 
 router.delete('/:pid', async (req, res) => {
+
     let pid = req.params.pid;
     let id = parseInt(pid);
 
+    
     res.send(await productManager.deleteProduct(id));
+    socketServer.emit('updateProducts', await productManager.getProducts());
 })
 
 export default router;

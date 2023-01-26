@@ -1,0 +1,14 @@
+li{
+    list-style: none;
+}
+body{
+    background-color: aliceblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h2{
+    margin-bottom: 0px;
+}
+h3{
+    margin-top: 3px;
+    margin-bottom: 1px;
+}
