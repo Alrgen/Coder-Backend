@@ -7,6 +7,8 @@ import productsRouter from './routes/products.router.js'
 import cartsRouter from './routes/carts.router.js'
 import viewsRouter from './routes/views.router.js'
 
+import './dbConfig.js';
+
 const app = express()
 const httpServer = app.listen(8080, ()=>console.log("Servidor iniciado"))
 const socketServer = new Server(httpServer);

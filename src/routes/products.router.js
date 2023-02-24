@@ -1,45 +1,28 @@
 import { Router } from "express";
-import { ProductManager } from '../productManager.js';
+//import { ProductManager } from '../dao/fileManager/productManager.js';
+import { ProductManager } from "../dao/mongoManager/productManager.js";
 import socketServer from "../app.js";
 
 
 const router = Router();
 
-const productManager = new ProductManager('../products.json')
+const productManager = new ProductManager()
 
 
 router.get('/', async (req, res) => {
-    let { limit } = req.query
+    let { limit, sort, category, stock, page } = req.query
 
-    const products = await productManager.getProducts();
-    const productsLimit = []
+    const query = {category, stock}
 
-    if (limit) {
-        for (let i = 0; i < parseInt(limit); i++){
-            productsLimit.push(products[i]);
-        }
-        res.send({productsLimit});
-        return 
-    }
-
+    const products = await productManager.getProducts(limit, sort, query, page);
     res.send({products});
 })
 
 router.get('/:pid', async (req, res) => {
     let pid = req.params.pid
+    const product = await productManager.getProductById(pid);
 
-    const products = await productManager.getProducts();
-
-    if (pid){
-        const parseId = parseInt(pid)
-        const product = await productManager.getProductById(parseId);
-        console.log(product)
-
-        res.send({product})
-        return;
-    }
-
-    res.send({products});
+    res.send({product})
 })
 
 
@@ -53,34 +36,29 @@ router.post('/', async (req, res) => {
         price: undefined,
         status: true,
         stock: undefined,
-        category: undefined,
-        thumbnails: '/'
+        thumbnails: '/',
+        category: undefined
     }
 
     product = {...product, ...productEntry}
-    
+
     res.send(await productManager.addProduct(product));
     socketServer.emit('updateProducts', await productManager.getProducts());
 })
 
 router.put('/:pid', async (req, res) => {
-
     let pid = req.params.pid
-    let id = parseInt(pid)
     let product = req.body
 
     
-    res.send(await productManager.updateProduct(id, product));
+    res.send(await productManager.updateProduct(pid, product));
     socketServer.emit('updateProducts', await productManager.getProducts());
 })
 
 router.delete('/:pid', async (req, res) => {
-
     let pid = req.params.pid;
-    let id = parseInt(pid);
-
     
-    res.send(await productManager.deleteProduct(id));
+    res.send(await productManager.deleteProduct(pid));
     socketServer.emit('updateProducts', await productManager.getProducts());
 })
 

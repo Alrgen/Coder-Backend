@@ -1,5 +1,5 @@
 import express from 'express';
-import { ProductManager } from '../productManager.js';
+import { ProductManager } from '../dao/mongoManager/productManager.js';
 import socketServer from '../app.js';
 
 const router = express.Router();

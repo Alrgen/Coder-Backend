@@ -1,1 +1,74 @@
-[{"id":2,"title":"Cocina 4 hornallas","description":"Cocina a gas natural de acero inoxidable","price":120000,"stock":12,"code":"abc124","thumbnail":"sin imagen"},{"id":3,"title":"Lavarropa","description":"Lavarropa de 8kg con centrifugado","price":80000,"stock":3,"code":"abc125","thumbnail":"sin imagen"},{"id":4,"title":"Computadora oficina","description":"Computadora de escritorio con 8Gb de ram","price":50000,"stock":15,"code":"abd123","thumbnail":"sin imagen"},{"id":5,"title":"Notebook gamer","description":"Notebook gamer con 32gb de ram y 1tb de ssd","price":150000,"stock":3,"code":"abd124","thumbnail":"sin imagen"},{"id":7,"title":"Televisor full HD","description":"Television full HD de 24 pulgadas","price":55000,"stock":5,"code":"abd126","thumbnail":"sin imagen"},{"id":8,"title":"Televisor 4K","description":"Television 4K de 52 pulgadas","price":160000,"stock":5,"code":"bbc123","thumbnail":"sin imagen"},{"id":9,"title":"Termotanque 50L","description":"Termotanque a gas natural de 50L","price":40000,"stock":3,"code":"bbc124","thumbnail":"sin imagen"},{"id":10,"title":"Termotanque 100L","description":"Termotanque a gas natural de 100L","price":65000,"stock":2,"code":"bbc125","thumbnail":"sin imagen"}]
+[
+    {
+        "title": "Cocina 4 hornallas",
+        "description": "Cocina a gas natural de acero inoxidable",
+        "price": 120000,
+        "stock": 12,
+        "code": "abc124",
+        "thumbnail": "sin imagen",
+        "category": "cocina"
+    },
+    {
+        "title": "Lavarropa",
+        "description": "Lavarropa de 8kg con centrifugado",
+        "price": 80000,
+        "stock": 3,
+        "code": "abc125",
+        "thumbnail": "sin imagen",
+        "category": "lavadero"
+    },
+    {
+        "title": "Computadora oficina",
+        "description": "Computadora de escritorio con 8Gb de ram",
+        "price": 50000,
+        "stock": 15,
+        "code": "abd123",
+        "thumbnail": "sin imagen",
+        "category" : "tecnologia"
+    },
+    {
+        "title": "Notebook gamer",
+        "description": "Notebook gamer con 32gb de ram y 1tb de ssd",
+        "price": 150000,
+        "stock": 3,
+        "code": "abd124",
+        "thumbnail": "sin imagen",
+        "category" : "tecnologia"
+    },
+    {
+        "title": "Televisor full HD",
+        "description": "Television full HD de 24 pulgadas",
+        "price": 55000,
+        "stock": 5,
+        "code": "abd126",
+        "thumbnail": "sin imagen",
+        "category": "tecnologia"
+    },
+    {
+        "title": "Televisor 4K",
+        "description": "Television 4K de 52 pulgadas",
+        "price": 160000,
+        "stock": 5,
+        "code": "bbc123",
+        "thumbnail": "sin imagen",
+        "category": "tecnologia"
+    },
+    {
+        "title": "Termotanque 50L",
+        "description": "Termotanque a gas natural de 50L",
+        "price": 40000,
+        "stock": 3,
+        "code": "bbc124",
+        "thumbnail": "sin imagen",
+        "category":"agua"
+    },
+    {
+        "title": "Termotanque 100L",
+        "description": "Termotanque a gas natural de 100L",
+        "price": 65000,
+        "stock": 2,
+        "code": "bbc125",
+        "thumbnail": "sin imagen",
+        "category":"agua"
+    }
+]

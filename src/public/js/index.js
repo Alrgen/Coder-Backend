@@ -9,7 +9,7 @@ socket.on("updateProducts", (products) => {
         `<li>
             <h2>${product.title}</h2>
             <h3>$${product.price}</h3>
-            <span>ID: ${product.id}</span>
+            <span>Code: ${product.code}</span>
         </li>`
     });
 })
