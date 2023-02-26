@@ -1,0 +1,22 @@
+<h1>Productos</h1>
+<form action="/carts/{{cartId}}" method="get">
+    <button type="submit" _id={{cartId}} id="cart">Ir al Carrito</button>
+</form>
+
+<ul>
+    {{#each products}}
+    <li>
+        <h2>{{this.title}}</h2>
+        <h3>${{this.price}}</h3>
+        <button class="add-to-cart-button" _id={{this._id}}>Añadir al carrito</button>
+    </li>
+    {{/each}}
+</ul>
+
+<div style={display: flex;}>
+    <button onclick=location.href='{{prevPag}}' type="button">prevPag</button>
+    <button onclick=location.href='{{nextPag}}' type="button">nextPag</button>
+</div>
+
+
+<script src="/js/products.js"></script>

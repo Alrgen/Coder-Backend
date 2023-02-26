@@ -13,8 +13,6 @@ export class ProductManager {
             if (category != undefined && category != 'undefined') Query.category = category;
             if (stock.toLowerCase() === 'true') Query.stock = {$gte: 1};
 
-            console.log(Query)
-
             switch (sort) {
                 case "asc":
                     Sort = {price: 1}
