@@ -1,18 +1,21 @@
 import express from 'express';
-import { ProductManager } from '../dao/mongoManager/productManager.js';
 import socketServer from '../app.js';
+import { ProductManager } from '../dao/mongoManager/productManager.js';
 import { CartManager } from '../dao/mongoManager/cartManager.js';
 
 const router = express.Router();
 const productManager = new ProductManager('../products.json');
 const cartManager = new CartManager();
 
+
+//Ids de carritos para testeo
 const cartId = "63fbe491162191fb3fb400f7"
 //const cartId = "63fbe492162191fb3fb400f9"
 //const cartId = "63fbe493162191fb3fb400fb"
 
 
 
+//Ruta que muestra todos los productos de la base de datos
 router.get('/', async (req, res) => {
     const products = await productManager.getProducts();
 
@@ -22,6 +25,7 @@ router.get('/', async (req, res) => {
     });
 })
 
+//Igual a la ruta anterior pero con uso de web sockets para actualizar en tiempo real los cambios
 router.get('/realtimeproducts', async (req, res) => {
     const products = await productManager.getProducts();
 
@@ -37,10 +41,12 @@ router.get('/realtimeproducts', async (req, res) => {
     })
 })
 
+//Ruta que renderiza los productos ordenados por pagina
 router.get('/products/:p', async (req, res) => {
     const page = req.params.p;
     const pageProducts = await productManager.getProducts(5, "", {stock:"false"}, page);
 
+    //Clono el array de productos porque por configuracion de handlebars no permite renderizar el array original
     const products = pageProducts.payload.map(data => {
         return {
             title: data.title,
@@ -51,6 +57,8 @@ router.get('/products/:p', async (req, res) => {
             _id: data._id
         }
     });
+
+    
     let prevLink, nextLink;
 
     pageProducts.hasPrevPage == true ? prevLink = `/products/${parseInt(page) - 1}` : prevLink = `/products/${parseInt(page)}`
@@ -65,9 +73,11 @@ router.get('/products/:p', async (req, res) => {
     });
 })
 
+//Ruta que renderiza el carrito solicitado
 router.get('/carts/:cid', async (req, res) => {
-    if (req.params.cid.length > 5){
-        const cartId = req.params.cid;
+    
+    if (req.params.cid.length > 5){ //Por algun motivo el endpoint se ejecuta dos veces obteniendo por params el cid "css"
+        const cartId = req.params.cid; // asi que agregue esta condicion para evitar que la id del carrito tome ese valor
     }
 
     const rawCart = await cartManager.getCartById(cartId);
